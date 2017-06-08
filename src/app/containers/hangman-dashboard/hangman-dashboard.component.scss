@@ -1,0 +1,28 @@
+@import '../../styles/colors';
+
+$border-radius: 10px;
+
+// TODO pamietac o rozdzielczosciach
+.container {
+  background-color: $color-white;
+  height: auto;
+  min-height: 980px;
+  width: 90%;
+  max-width: 1600px;
+  padding: 70px;
+  margin: 0 auto;
+  margin-top: 70px;
+  overflow: visible;
+}
+
+.guess-letter {
+  background-color: $color-letter;
+  height: 140px;
+  width: 125px;
+  border-radius: $border-radius;
+  margin: 4px;
+
+  &--active {
+    background-color: $color-letter--active;
+  }
+}

@@ -1,0 +1,216 @@
+@import '../../styles/colors';
+
+// just to be sure we will still see the bar on wide screens
+$horizontal-bar-width: 400px;
+$horizontal-bar-height: 30px;
+$vertical-bar-width: 30px;
+$vertical-bar-height: 50px;
+
+$border-radius: 10px;
+
+$head-width: 192px;
+$head-height: 212px;
+
+$neck-width: 46px;
+$neck-height: 67px;
+
+$corpus-width: 105px;
+$corpus-height: 165px;
+
+$arm-width: 45px;
+$arm-height: 135px;
+
+$hand-size: 30px;
+
+$leg-width:  48px;
+$leg-height: 166px;
+
+$foot-width: 78px;
+$foot-height: 28px;
+
+@mixin arm($corpus-color: $color-corpus--dark, $rotate: 45deg) {
+  position: absolute;
+  top: -8px;
+  width: $arm-width;
+  height: $arm-height;
+  background-color: $corpus-color;
+  transform: rotate($rotate);
+  border-radius: $border-radius;
+}
+
+@mixin hand($hand-color: $color-corpus--dark) {
+  position: absolute;
+  bottom: -$hand-size + 10px;
+  left: 50%;
+  width: $hand-size;
+  height: $hand-size;
+  background: linear-gradient(to top, $color-skin 0, $color-skin ($hand-size - 10px), $hand-color ($hand-size - 10px), $hand-color 100%);
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin leg() {
+  position: relative;
+  background-color: $color-legs;
+  width: $leg-width;
+  height: $leg-height;
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+  margin: -10px 27px 0;
+}
+
+@mixin foot() {
+  position: absolute;
+  bottom: -$foot-height + 8px;
+  z-index: -1;
+  width: $foot-width;
+  height: $foot-height;
+  background-color: $color-skin;
+  border-radius: $border-radius;
+}
+
+.folk {
+  position: relative;
+
+  &__container {
+    position: relative;
+    width: 250px;
+    z-index: 0;
+
+    .bar {
+      position: relative;
+      width: $horizontal-bar-width;
+      height: $horizontal-bar-height;
+      background-color: $color-bar;
+      border-radius: $border-radius;
+      transform: translateX(- ($horizontal-bar-width - 170px));
+      z-index: -1;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -$vertical-bar-height;
+        right: 30px;
+        width: $vertical-bar-width;
+        height: $vertical-bar-height;
+        background-color: $color-bar;
+        border-bottom-right-radius: $border-radius;
+        border-bottom-left-radius: $border-radius;
+      }
+    }
+  }
+
+  &__head {
+    position: relative;
+    z-index: 2;
+    margin-top: $vertical-bar-height - 10px;
+    margin-left: auto;
+    margin-right: auto;
+    width: $head-width;
+    height: $head-height;
+    background-image: url('assets/images/head.png');
+  }
+
+  &__neck {
+    position: relative;
+    z-index: 1;
+    background-color: $color-skin;
+    border-radius: $border-radius;
+    width: $neck-width;
+    height: $neck-height;
+    margin-top: -25px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__corpus {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(to right, $color-corpus--light 0, $color-corpus--light 50%, $color-corpus--dark 50%, $color-corpus--dark 100%);
+    border-radius: $border-radius;
+    width: $corpus-width;
+    height: $corpus-height;
+    margin-top: -25px;
+    margin-left: auto;
+    margin-right: auto;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: $corpus-width;
+      height: $corpus-width / 2;
+      background-color: $color-legs;
+      border-bottom-right-radius: $border-radius;
+      border-bottom-left-radius: $border-radius;
+    }
+
+    .folk {
+      &__left {
+        &-arm {
+          @include arm($color-corpus--light, 45deg);
+          left: -$arm-width;
+        }
+
+        &-hand {
+          @include hand($color-corpus--light);
+        }
+      }
+
+      &__right {
+        &-arm {
+          @include arm($color-corpus--dark, -45deg);
+          right: -$arm-width;
+        }
+
+        &-hand {
+          @include hand($color-corpus--dark);
+        }
+      }
+    }
+  }
+
+  &__legs {
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: $leg-height + $foot-height;
+    display: flex;
+    justify-content: center;
+
+    .wrapper {
+      &--left {
+        transform: rotate(-15deg);
+        height: $leg-height;
+
+        .folk__left {
+          &-leg {
+            @include leg();
+          }
+
+          &-foot {
+            @include foot();
+          }
+        }
+      }
+
+      &--right {
+        transform: rotate(15deg);
+        height: $leg-height;
+
+        .folk__right {
+          &-leg {
+            @include leg();
+            left: 0;
+          }
+
+          &-foot {
+            @include foot();
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
