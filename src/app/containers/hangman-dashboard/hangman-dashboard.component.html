@@ -1,39 +1,36 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-https://github.com/ciesielskico/netguru-hangman
-
-
-
-
-
 <div class="container" style="display: flex; flex-direction: column;">
-  <app-folk></app-folk>
+  <div style="display: flex; flex-wrap: wrap">
+    <div style="width: 50%; min-width: 260px;">
+      <app-folk [lives]="lives"></app-folk>
+    </div>
+    <div style="width: 50%; min-width: 260px; display: flex; flex-direction: column;">
+      <h3 style="font-size: 22px; text-decoration: uppercase;">You missed:</h3>
+      <div style="display: flex; flex-wrap: wrap;">
+        <span *ngFor="let missed of missedLetters" style="font-size: 68px; color: #4d69fa; margin-right: 28px">{{ missed }}</span>
+      </div>
+    </div>
+  </div>
+{{status.over}} | {{lives}}
+  
   <!-- app-letters-to-guess -->
   <div style="display: flex; flex-wrap: wrap; margin-left: -4px; margin-right: -4px;">
-    <div class="guess-letter">a</div>
-    <div class="guess-letter">f</div>
-    <div class="guess-letter">s</div>
-    <div class="guess-letter">f</div>
-    <div class="guess-letter">a</div>
-    <div class="guess-letter">f</div>
-    <div class="guess-letter">s</div>
-    <div class="guess-letter">f</div>
-    <div class="guess-letter">s</div>
-    <div class="guess-letter">d</div>
-    <div class="guess-letter guess-letter--active">f</div>
+    <div *ngFor="let empty of emptyBoxes" class="guess-letter-box"></div>
+    <div *ngFor="let letter of wordToGuessArray" class="guess-letter-box guess-letter-box--active">
+      <span [ngClass]="{'guess-letter--active': isLetterGuessed(letter)}" class="guess-letter">
+        {{ letter }}
+      </span>
+    </div>
   </div>
+</div>
+<div *ngIf="status.over" class="modal" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+  <h3 class="modal__message" style="font-size: 68px; color: white; text-transform: uppercase; letter-spacing: 0.1em">
+    <span *ngIf="status.won">
+      Good Job!
+    </span>
+    <span *ngIf="!status.won">
+      Game over
+    </span>
+  </h3>
+  <button (click)="resetGameHandler()" style="background-color: transparent; font-size: 23px; color: #ffba00; border: 4px dashed #ffba00; 
+  border-radius: 50px; height: 100px; padding: 33px 80px; text-transform: uppercase; font-weight: bold;">New word</button>
 </div>
