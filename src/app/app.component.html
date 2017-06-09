@@ -1,3 +1,12 @@
 <div>
-  <app-hangman-dashboard></app-hangman-dashboard>
+  <app-hangman-dashboard 
+    [lives]="lives$ | async" 
+    [wordToGuess]="wordToGuess$ | async"
+    [missedLetters]="missedLetters$ | async"
+    [guessedLetters]="guessedLetters$ | async"
+    [status]="status$ | async"
+    (checkLetterEvent)="onCheckLetterHandler($event)"
+    (getNewWord)="onGetNewWordHandler()"
+    (resetGame)="onResetGameHandler()"
+    (setGameStatus)="onSetGameStatusHandler($event)"></app-hangman-dashboard>
 </div>

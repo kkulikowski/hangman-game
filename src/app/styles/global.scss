@@ -1,4 +1,8 @@
 @import './colors';
+@font-face {
+  font-family: AllerDisplay;
+  src: url('/assets/fonts/AllerDisplay.ttf');
+}
 
 *,
 *::before,
@@ -14,6 +18,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  font-family: AllerDisplay;
   font-size: 1.2rem;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

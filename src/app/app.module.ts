@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 // [TODO] remove unused
 import 'rxjs/add/operator/map';
@@ -19,9 +22,14 @@ import 'rxjs/add/observable/throw';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/combineLatest';
 
+// Redux
+import { reducers } from './reducers';
+import { HangmanEffects } from './hangman.effects';
+
 import { AppComponent } from './app.component';
 import { HangmanDashboardComponent } from './containers/hangman-dashboard/hangman-dashboard.component';
 import { FolkComponent } from './components/folk/folk.component';
+import { HangmanService } from './services/hangman.service';
 
 @NgModule({
   declarations: [
@@ -32,10 +40,15 @@ import { FolkComponent } from './components/folk/folk.component';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    StoreModule.provideStore(reducers),
+    EffectsModule.run(HangmanEffects),
+    StoreDevtoolsModule.instrumentOnlyWithExtension({
+      maxAge: 5
+    })
   ],
   exports: [],
-  providers: [],
+  providers: [HangmanService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

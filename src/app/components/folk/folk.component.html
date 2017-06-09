@@ -1,24 +1,24 @@
 <div class="folk__container">
   <div class="bar"></div>
-  <div class="folk__head"></div>
-  <div class="folk__neck"></div>
-  <div class="folk__corpus">
-    <div class="folk__right-arm">
-      <div class="folk__right-hand"></div>  
+  <div [ngClass]="(lives < 11) ? 'active' : 'hidden'" class="folk__head"></div>
+  <div [ngClass]="(lives < 10) ? 'active' : 'hidden'" class="folk__neck"></div>
+  <div [ngClass]="(lives < 9) ? 'active' : 'hidden'" class="folk__corpus">
+    <div [ngClass]="(lives < 8) ? 'active' : 'hidden'" class="folk__right-arm">
+      <div [ngClass]="(lives < 7) ? 'active' : 'hidden'" class="folk__right-hand"></div>  
     </div>
-    <div class="folk__left-arm">
-      <div class="folk__left-hand"></div>
+    <div [ngClass]="(lives < 6) ? 'active' : 'hidden'" class="folk__left-arm">
+      <div [ngClass]="(lives < 5) ? 'active' : 'hidden'" class="folk__left-hand"></div>
     </div>
   </div>
   <div class="folk__legs">
     <div class="wrapper--right">
-      <div class="folk__right-leg">
-        <div class="folk__right-foot"></div>
+      <div [ngClass]="(lives < 4) ? 'active' : 'hidden'" class="folk__right-leg">
+        <div [ngClass]="(lives < 3) ? 'active' : 'hidden'" class="folk__right-foot"></div>
       </div>
     </div>
     <div class="wrapper--left">
-      <div class="folk__left-leg">
-        <div class="folk__left-foot"></div>
+      <div [ngClass]="(lives < 2) ? 'active' : 'hidden'" class="folk__left-leg">
+        <div [ngClass]="(lives < 1) ? 'active' : 'hidden'" class="folk__left-foot"></div>
       </div>
     </div>
   </div>
