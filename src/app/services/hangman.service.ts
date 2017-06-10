@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Response, URLSearchParams } from '@angular/http';
+import { Response } from '@angular/http';
 import { Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
