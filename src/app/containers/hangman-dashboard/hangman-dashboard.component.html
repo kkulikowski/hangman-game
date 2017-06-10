@@ -1,29 +1,30 @@
-<div class="container" style="display: flex; flex-direction: column;">
-  <div style="display: flex; flex-wrap: wrap">
-    <div style="width: 50%; min-width: 260px;">
+<div class="container">
+  <div class="flex--wrap">
+    <div class="container--half">
       <app-folk [lives]="lives"></app-folk>
     </div>
-    <div style="width: 50%; min-width: 260px; display: flex; flex-direction: column;">
-      <h3 style="font-size: 22px; text-decoration: uppercase;">You missed:</h3>
-      <div style="display: flex; flex-wrap: wrap;">
-        <span *ngFor="let missed of missedLetters" style="font-size: 68px; color: #4d69fa; margin-right: 28px">{{ missed }}</span>
+    <div class="container--half flex--column">
+      <h3 class="missed-letter__message">You missed:</h3>
+      <div class="flex--wrap">
+        <span *ngFor="let missed of missedLetters" class="missed-letter">{{ missed }}</span>
       </div>
     </div>
   </div>
-{{status.over}} | {{lives}}
   
   <!-- app-letters-to-guess -->
-  <div style="display: flex; flex-wrap: wrap; margin-left: -4px; margin-right: -4px;">
-    <div *ngFor="let empty of emptyBoxes" class="guess-letter-box"></div>
-    <div *ngFor="let letter of wordToGuessArray" class="guess-letter-box guess-letter-box--active">
+  <div class="flex--wrap guess-letter__wrapper">
+    <div *ngFor="let empty of emptyBoxes" class="guess-letter__box"></div>
+    <div *ngFor="let letter of wordToGuessArray" class="guess-letter__box guess-letter__box--active">
       <span [ngClass]="{'guess-letter--active': isLetterGuessed(letter)}" class="guess-letter">
         {{ letter }}
       </span>
     </div>
   </div>
 </div>
-<div *ngIf="status.over" class="modal" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-  <h3 class="modal__message" style="font-size: 68px; color: white; text-transform: uppercase; letter-spacing: 0.1em">
+
+<!-- modal window -->
+<div *ngIf="status.over" class="modal">
+  <h3 class="modal__message">
     <span *ngIf="status.won">
       Good Job!
     </span>
@@ -31,6 +32,5 @@
       Game over
     </span>
   </h3>
-  <button (click)="resetGameHandler()" style="background-color: transparent; font-size: 23px; color: #ffba00; border: 4px dashed #ffba00; 
-  border-radius: 50px; height: 100px; padding: 33px 80px; text-transform: uppercase; font-weight: bold;">New word</button>
+  <button (click)="resetGameHandler()" class="modal__button">New word</button>
 </div>

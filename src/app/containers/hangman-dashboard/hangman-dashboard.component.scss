@@ -1,18 +1,41 @@
 @import '../../styles/colors';
 
 $border-radius: 10px;
+$container-max-width: 1600px;
+$container-spacing: 70px;
+$container-min-height: 980px;
+$container-half-min-width: 260px;
+$letter-box-font-size: 20px;
+$letter-box-height: 140px;
+$letter-box-width: 125px;
+$letter-box-spacing: 4px;
+$modal-message-font-size: 68px;
+$modal-message-font-spacing: 0.1em;
+$modal-button-height: 100px;
+$modal-button-font-size: 23px;
+$modal-button-spacing-vert: 33px;
+$modal-button-spacing-hor: 80px;
+$modal-background-opacity: 0.7;
+$missed-letter-spacing: 28px;
+$missed-letter-font-size: 68px;
+$missed-letter-message-font-size: 22px;
 
-// TODO pamietac o rozdzielczosciach
 .container {
+  display: flex;
+  flex-direction: column;
   background-color: $color-white;
   height: auto;
-  min-height: 980px;
+  min-height: $container-min-height;
   width: 90%;
-  max-width: 1600px;
-  padding: 70px;
-  margin: 0 auto;
-  margin-top: 70px;
+  max-width: $container-max-width;
+  padding: $container-spacing;
+  margin: $container-spacing auto 0;
   overflow: visible;
+
+  &--half {
+    width: 50%;
+    min-width: $container-half-min-width;
+  }
 }
 
 .guess-letter {
@@ -24,16 +47,16 @@ $border-radius: 10px;
     transition: opacity 0.3s ease-in-out;
   }
 
-  &-box {
+  &__box {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 20px;
+    font-size: $letter-box-font-size;
     background-color: $color-letter;
-    height: 140px;
-    width: 125px;
+    height: $letter-box-height;
+    width: $letter-box-width;
     border-radius: $border-radius;
-    margin: 4px;
+    margin: $letter-box-spacing;
     color: $color-white;
     text-transform: uppercase;
 
@@ -41,10 +64,26 @@ $border-radius: 10px;
       background-color: $color-letter--active;
     }
   }
+
+  &__wrapper {
+    margin: 0 (- $letter-box-spacing);
+  }
+}
+
+.missed-letter {
+  font-size: $missed-letter-font-size;
+  color: $color-missed-letter;
+  margin-right: $missed-letter-spacing;
+
+  &__message {
+    font-size: $missed-letter-message-font-size;
+    text-decoration: uppercase;
+  }
 }
 
 .modal {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -52,5 +91,37 @@ $border-radius: 10px;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba($color-background, 0.7);
+  background-color: rgba($color-background, $modal-background-opacity);
+
+  &__message {
+    font-size: $modal-message-font-size;
+    color: $color-white;
+    text-transform: uppercase;
+    letter-spacing: $modal-message-font-spacing;
+  }
+
+  &__button {
+    background-color: transparent;
+    font-size: $modal-button-font-size;
+    color: $color-button;
+    border: 4px dashed $color-button;
+    border-radius: $modal-button-height / 2;
+    height: $modal-button-height;
+    padding: $modal-button-spacing-vert $modal-button-spacing-hor;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+}
+
+.flex {
+
+  &--column {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &--wrap {
+    display: flex;
+    flex-wrap: wrap;
+  }
 }

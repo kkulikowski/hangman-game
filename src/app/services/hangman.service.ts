@@ -12,7 +12,7 @@ export class HangmanService {
 
   getWord(action: any): Observable<any> {
     return this.http
-      .get(`${API_ENDPOINT}randomWord?${action.payload}`) //TODO make proper params here
+      .get(`${API_ENDPOINT}randomWord?${action.payload}`)
       .map((response: Response) => response.json())
       .catch((error: any) => Observable.throw(error.json()));
   }
