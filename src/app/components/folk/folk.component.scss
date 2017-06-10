@@ -108,7 +108,7 @@ $foot-height: 28px;
     margin-right: auto;
     width: $head-width;
     height: $head-height;
-    background-image: url('../../../assets/images/head.png');
+    background-image: url('/assets/images/head.png');
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
   }
