@@ -13,18 +13,8 @@ import { Status } from './hangman.interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent implements OnInit {
-
-  searchParams = {
-    hasDictionaryDef: false,
-    minCorpusCount: 0,
-    maxCorpusCount: -1,
-    minDictionaryCount: 1,
-    maxDictionaryCount: -1,
-    minLength: 5,
-    maxLength: 11,
-    api_key: 'a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5'
-  };
-  params2 = 'hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=11&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
+  // TODO stretch: prepare params from it
+  params = 'hasDictionaryDef=false&minCorpusCount=0&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=5&maxLength=11&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5';
 
   lives$: Observable<number>;
   wordToGuess$: Observable<string>;
@@ -41,7 +31,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.dispatch(new HangmanActions.GetWord(this.params2));
+    this.store.dispatch(new HangmanActions.GetWord(this.params));
   }
 
   onCheckLetterHandler($event) {
@@ -53,11 +43,11 @@ export class AppComponent implements OnInit {
   }
 
   onGetNewWordHandler() {
-    this.store.dispatch(new HangmanActions.GetWord(this.params2));
+    this.store.dispatch(new HangmanActions.GetWord(this.params));
   }
 
   onResetGameHandler() {
-    this.store.dispatch(new HangmanActions.GetWord(this.params2));
+    this.store.dispatch(new HangmanActions.GetWord(this.params));
     this.store.dispatch(new HangmanActions.ResetGame());
   }
 

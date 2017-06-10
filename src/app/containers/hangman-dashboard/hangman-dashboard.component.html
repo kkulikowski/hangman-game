@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="flex--wrap">
+  <div class="flex--wrap layer-1">
     <div class="container--half">
       <app-folk [lives]="lives"></app-folk>
     </div>
@@ -12,7 +12,7 @@
   </div>
   
   <!-- app-letters-to-guess -->
-  <div class="flex--wrap guess-letter__wrapper">
+  <div class="flex--wrap guess-letter__wrapper layer-1">
     <div *ngFor="let empty of emptyBoxes" class="guess-letter__box"></div>
     <div *ngFor="let letter of wordToGuessArray" class="guess-letter__box guess-letter__box--active">
       <span [ngClass]="{'guess-letter--active': isLetterGuessed(letter)}" class="guess-letter">
