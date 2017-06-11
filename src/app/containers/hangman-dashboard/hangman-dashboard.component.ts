@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, EventEmitter, Output, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, HostListener, Input, EventEmitter, Output, SimpleChanges, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 
 import { difference } from 'lodash';
 import { Status } from '../../hangman.interfaces';
@@ -6,7 +6,8 @@ import { Status } from '../../hangman.interfaces';
 @Component({
   selector: 'app-hangman-dashboard',
   templateUrl: './hangman-dashboard.component.html',
-  styleUrls: ['./hangman-dashboard.component.scss']
+  styleUrls: ['./hangman-dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class HangmanDashboardComponent implements OnChanges {
@@ -53,13 +54,16 @@ export class HangmanDashboardComponent implements OnChanges {
 
       // check if game is won
       if (this._isGameWon()) {
+        console.log('game is won');
         this._setGameStatus(true, true);
       };
       // or lost
       if (this._isGameLost()) {
+        console.log('game is lost');
         this._setGameStatus(true, false);
       }
     }
+    console.log('changes');
   }
 
   testLetter (letter: string) {
