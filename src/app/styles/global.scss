@@ -1,4 +1,6 @@
 @import './colors';
+@import './mixins';
+
 @font-face {
   font-family: AllerDisplay;
   src: url('/assets/fonts/AllerDisplay.ttf');
@@ -12,14 +14,14 @@
 }
 
 html {
-  font-size: 10px;
+  font-size: 62.5%;
 }
 
 body {
+  @include font-size(13);
+  font-family: AllerDisplay;
   margin: 0;
   padding: 0;
-  font-family: AllerDisplay;
-  font-size: 1.2rem;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
