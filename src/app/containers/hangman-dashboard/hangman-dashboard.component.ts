@@ -11,8 +11,10 @@ import { Status } from '../../hangman.interfaces';
 })
 
 export class HangmanDashboardComponent implements OnChanges {
+  changeDetected: boolean;
+  oldStatus: Status;
   // TODO connect it with params to wordnik api request
-  maxWordCount = 11;
+  maxWordLength = 11;
   emptyBoxes: string[];
   wordToGuessArray: string[];
   alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -48,9 +50,9 @@ export class HangmanDashboardComponent implements OnChanges {
         return;
       }
       // check if word to guess length array length is lower than max word count to prevent errors in template
-      if (this.wordToGuessArray.length < this.maxWordCount) {
+      if (this.wordToGuessArray.length < this.maxWordLength) {
         // prepare array for ngFor loop since we cannot repeat n times
-        this.emptyBoxes = Array((this.maxWordCount - 1) - this.wordToGuessArray.length).fill('');
+        this.emptyBoxes = Array((this.maxWordLength - 1) - this.wordToGuessArray.length).fill('');
       }
 
       // check if game is won
@@ -64,12 +66,11 @@ export class HangmanDashboardComponent implements OnChanges {
         this._setGameStatus(true, false);
       }
     }
-    console.log('changes');
   }
 
   testLetter (letter: string) {
     // dont do anything if pressed key is not a letter or game is over
-    if (!this._isLetter(letter) ||  this.status.over) {
+    if (!this._isLetter(letter) || this.status.over) {
       return;
     }
 

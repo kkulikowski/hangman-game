@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, HostListener, OnInit, Input } from '@angular/core';
 
 import { Store } from '@ngrx/store';
 import * as HangmanActions from './hangman.actions';
@@ -9,8 +9,7 @@ import { Status } from './hangman.interfaces';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   // TODO stretch: prepare params from it

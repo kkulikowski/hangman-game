@@ -27,9 +27,10 @@ export function reducer (state = initialState, action: HangmanActions.All): Stat
       return initialState;
 
     case HangmanActions.SET_GAME_STATUS:
+      const newState = {...state.status, over: action.payload.over, won: action.payload.won};
       return {
         ...state,
-        status: action.payload
+        status: newState
       };
 
     case HangmanActions.GET_WORD_SUCCESS:
