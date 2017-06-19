@@ -40,7 +40,7 @@ export class HangmanDashboardComponent implements OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     if (this.wordToGuess) {
       // prepare array with letters to show
-      this.wordToGuessArray = this.wordToGuess.split('');
+      this.wordToGuessArray = this.wordToGuess.toUpperCase().split('');
       // check if word has special marks, if so get a new one
       if (this._isWordValid(this.wordToGuess)) {
         this.getNewWord.emit();
