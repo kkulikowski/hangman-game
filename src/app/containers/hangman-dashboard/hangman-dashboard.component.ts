@@ -29,9 +29,10 @@ export class HangmanDashboardComponent implements OnChanges {
   @Output() resetGame: EventEmitter<any> = new EventEmitter<any>();
   @Output() setGameStatus: EventEmitter<any> = new EventEmitter<any>();
 
-  @HostListener('window:keydown', ['$event'])
-  testLetterHandler($event) {
-    this.testLetter($event.key);
+  @HostListener('window:keypress', ['$event'])
+  testLetterHandler($event: KeyboardEvent) {
+    const letter = String.fromCharCode($event.charCode !== null ? $event.charCode : $event.keyCode);
+    this.testLetter(letter.toUpperCase());
   }
 
 
@@ -85,15 +86,15 @@ export class HangmanDashboardComponent implements OnChanges {
   }
 
   guessedLetterNotOnList(letter: string): boolean {
-    return (this.wordToGuess.indexOf(letter.toUpperCase()) > -1) && (this.guessedLetters.indexOf(letter.toUpperCase()) === -1);
+    return (this.wordToGuess.indexOf(letter) > -1) && (this.guessedLetters.indexOf(letter) === -1);
   }
 
   missedLetterNotOnList(letter: string): boolean {
-    return (this.wordToGuess.indexOf(letter.toUpperCase()) === -1) && (this.missedLetters.indexOf(letter.toUpperCase()) === -1);
+    return (this.wordToGuess.indexOf(letter) === -1) && (this.missedLetters.indexOf(letter) === -1);
   }
 
   isLetterGuessed(letter: string): boolean {
-    return this.guessedLetters.indexOf(letter.toUpperCase()) !== -1;
+    return this.guessedLetters.indexOf(letter) !== -1;
   }
 
   resetGameHandler(): void {
@@ -102,7 +103,7 @@ export class HangmanDashboardComponent implements OnChanges {
 
   // check if letter is in alphabet - if no, well.. don't do anything
   private _isLetter(letter: string): boolean {
-    return this.alphabet.indexOf(letter.toUpperCase()) !== -1;
+    return this.alphabet.indexOf(letter) !== -1;
   }
 
   // check if there are any differences between arrays, if no - you won the game!
