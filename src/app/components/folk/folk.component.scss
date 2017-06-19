@@ -22,6 +22,8 @@ $arm-height: 135px;
 
 $hand-size: 30px;
 
+$leg-wrapper-top-margin: 10px;
+
 $leg-width:  48px;
 $leg-height: 166px;
 
@@ -56,7 +58,7 @@ $foot-height: 28px;
   height: $leg-height;
   border-bottom-right-radius: $border-radius;
   border-bottom-left-radius: $border-radius;
-  margin: -10px 27px 0;
+  margin: 0 27px;
 }
 
 @mixin foot() {
@@ -191,7 +193,7 @@ $foot-height: 28px;
       &--left {
         transform: rotate(-15deg);
         height: $leg-height;
-
+        margin-top: -$leg-wrapper-top-margin;
         .folk__left {
           &-leg {
             @include leg();
@@ -206,6 +208,7 @@ $foot-height: 28px;
       &--right {
         transform: rotate(15deg);
         height: $leg-height;
+        margin-top: -$leg-wrapper-top-margin;
 
         .folk__right {
           &-leg {
