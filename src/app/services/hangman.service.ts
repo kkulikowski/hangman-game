@@ -3,7 +3,7 @@ import { Response } from '@angular/http';
 import { Http, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
-const API_ENDPOINT = '//api.wordnik.com:80/v4/words.json/';
+const API_ENDPOINT = 'http://api.wordnik.com:80/v4/words.json/';
 
 @Injectable()
 export class HangmanService {

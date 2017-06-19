@@ -37,8 +37,7 @@ export function reducer (state = initialState, action: HangmanActions.All): Stat
       return { ...state, word: newWord };
 
     case HangmanActions.GET_WORD_ERROR:
-      console.error('get word error!');
-      return state;
+      return initialState;
 
     case HangmanActions.CHECK_LETTER_SUCCESS:
       const newArrayWithGuessedLetter = [
