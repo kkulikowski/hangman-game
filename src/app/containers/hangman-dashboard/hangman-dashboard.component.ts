@@ -7,7 +7,7 @@ import { Status } from '../../hangman.interfaces';
   selector: 'app-hangman-dashboard',
   templateUrl: './hangman-dashboard.component.html',
   styleUrls: ['./hangman-dashboard.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class HangmanDashboardComponent implements OnChanges {
@@ -41,7 +41,7 @@ export class HangmanDashboardComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (this.wordToGuess) {
+    if (this.wordToGuess && this.status.over === false) {
       // prepare array with letters to show
       this.wordToGuessArray = this.wordToGuess.toUpperCase().split('');
       // check if word has special marks, if so get a new one
